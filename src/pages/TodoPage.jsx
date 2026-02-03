@@ -19,7 +19,7 @@ export const TodoPage = () => {
 
     const [todos, setTodos] = useState([]);
     const [inputValue, setInputValue] = useState("");
-    const [selectedCategory, setSelectedCategory] = useState("Personal");
+    const [selectedCategory, setSelectedCategory] = useState("");
     const [editId, setEditId] = useState(null)
     const [loading, setLoading] = useState(true)
     console.log(todos);
@@ -54,6 +54,13 @@ export const TodoPage = () => {
       e.preventDefault();
       if(!inputValue.trim()) return
 
+      if (!selectedCategory) {
+        toast.error("Pilih kategori dulu ya ", {
+          position: "top-center",
+        });
+        return;
+      }
+
       try {
         if(editId) {
           const todo = todos.find((t) => t.id == editId)
@@ -80,6 +87,11 @@ export const TodoPage = () => {
         setSelectedCategory('Personal')
       } catch (error) {
         console.log(error);
+        if(error.data.errors.includes('4 characters long')) {
+          toast.error('Minimal Text 4 Karakter', {
+          position: "top-center",
+        })
+        }
       }
     }
 
@@ -275,7 +287,7 @@ export const TodoPage = () => {
                             <Check size={14} />
                         </button>
                         <div className="flex-1 min-w-0">
-                            <p className="text-slate-500 font-medium line-through decoration-slate-400">{todo.text}</p>
+                            <p className="text-slate-500 font-medium line-through decoration-slate-400">{todo.title}</p>
                             <span className="text-[10px] text-slate-400 font-semibold mt-0.5 inline-block">
                                 {todo.category}
                             </span>
