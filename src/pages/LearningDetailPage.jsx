@@ -36,9 +36,11 @@ export const LearningDetailPage = () => {
   const navigate = useNavigate();
   const { roomId } = useParams();
 
+  const [isUploading, setIsUploading] = useState(false);
+
   const [room, setRoom] = useState(null);
   const [contents, setContents] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [_, setLoading] = useState(true);
   const [isDragging, setIsDragging] = useState(false);
 
   const [isContentModalOpen, setIsContentModalOpen] = useState(false);
@@ -69,12 +71,13 @@ export const LearningDetailPage = () => {
   };
 
   const handleCreateContent = async () => {
-    if (!contentFile) return;
+    if (!contentFile || isUploading) return;
 
     const formData = new FormData();
     formData.append("file", contentFile);
 
     try {
+      setIsUploading(true);
       const data = await createContentLearningApi(roomId, formData);
       // convertDate
       const contentData = {
@@ -93,6 +96,8 @@ export const LearningDetailPage = () => {
       toast.success("Berhasil Upload Materi");
     } catch {
       toast.error("Gagal Upload Materi");
+    } finally {
+      setIsUploading(false);
     }
 
     setContentFile(null);
@@ -381,7 +386,7 @@ export const LearningDetailPage = () => {
             <div className="p-6">
               {/* DROPZONE */}
               <label
-                className="group cursor-pointer"
+                className={`group ${isUploading ? "pointer-events-none opacity-70" : "cursor-pointer"}`}
                 onDragOver={(e) => {
                   e.preventDefault();
                   setIsDragging(true);
@@ -447,7 +452,7 @@ export const LearningDetailPage = () => {
 
               {/* ACTION */}
               <button
-                disabled={!contentFile}
+                disabled={!contentFile || isUploading}
                 onClick={handleCreateContent}
                 className="mt-6 w-full py-3 rounded-xl font-bold transition-all
                       bg-indigo-600 text-white hover:bg-indigo-700
