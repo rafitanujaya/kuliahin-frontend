@@ -6,22 +6,21 @@ import "@fontsource/geist/500.css";
 import "@fontsource/geist/600.css";
 import './index.css'
 import { registerSW } from "virtual:pwa-register"
-import LandingPage from './pages/LandingPage'
+import LandingPage from '@/pages/LandingPage'; 
 import { Toaster } from 'sonner';
 
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import LoginPage from './pages/LoginPage';
-import RegisterPage from './pages/RegisterPage';
-import AppLayout from './layouts/AppLayout';
-import DashboardPage from './pages/dashboardPage';
-import SchedulePage from './pages/SchedulePage';
-import NotificationPage from './pages/NotificationPage';
-import { TodoPage } from './pages/TodoPage';
-import { TaskPage } from './pages/TaskPage';
-import { CommingSoonPage } from './pages/CommingSoonPage';
-import { SettingPage } from './pages/SettingPage';
-import { LearningPage } from './pages/LearningPage';
-import { LearningDetailPage } from './pages/LearningDetailPage';
+import LoginPage from '@/pages/LoginPage'; 
+import RegisterPage from '@/pages/RegisterPage';
+import AppLayout from '@/layouts/AppLayout'; 
+import DashboardPage from '@/pages/DashboardPage';
+import SchedulePage from '@/pages/SchedulePage';
+import { TodoPage } from '@/pages/TodoPage'; 
+import { TaskPage } from '@/pages/TaskPage'; 
+import { CommingSoonPage } from '@/pages/CommingSoonPage'; 
+import { SettingPage } from '@/pages/SettingPage'; 
+import { LearningPage } from '@/pages/LearningPage'; 
+import { LearningDetailPage } from '@/pages/LearningDetailPage'; 
 import { ProtectedRoute } from '@/middleware/ProtectedRoute';
 import { UserProvider } from '@/context/UserContext';
 import { LoginGooglePage } from '@/pages/LoginGooglePage';
