@@ -12,10 +12,19 @@ import { AlertCircle, FileWarning, Clock, MessageCircle, X, Sparkles, LogIn, Upl
 CalendarRange,
  Zap, Library
   } from 'lucide-react';
+import { useNavigate } from "react-router-dom";
 
 
 const LandingPage = () => {
+   const navigate = useNavigate();
     const [scrolled, setScrolled] = useState(false)
+
+    const scrollToSection = (id) => {
+      const el = document.getElementById(id);
+      if (el) {
+         el.scrollIntoView({ behavior: "smooth" });
+      }
+   };
 
 
   useEffect(() => {
@@ -45,13 +54,28 @@ const LandingPage = () => {
 
         {/* Menu */}
         <ul className="hidden md:flex items-center gap-8 text-sm text-gray-600">
-          <li className="hover:text-gray-900 transition">Fitur</li>
-          <li className="hover:text-gray-900 transition">Cara Kerja</li>
-          <li className="hover:text-gray-900 transition">Insight</li>
+          <li
+               onClick={() => scrollToSection("fitur")}
+               className="cursor-pointer hover:text-gray-900 transition"
+            >
+               Fitur
+            </li>
+            <li
+               onClick={() => scrollToSection("cara-kerja")}
+               className="cursor-pointer hover:text-gray-900 transition"
+            >
+               Cara Kerja
+            </li>
+            <li
+               onClick={() => scrollToSection("use-case")}
+               className="cursor-pointer hover:text-gray-900 transition"
+            >
+               Cocok Buat Siapa
+            </li>
         </ul>
 
         {/* CTA */}
-        <button className="rounded-lg bg-indigo-600 px-4 py-2 text-sm font-medium text-white transition hover:bg-indigo-700">
+        <button onClick={() => navigate("/login")} className="rounded-lg cursor-pointer bg-indigo-600 px-4 py-2 text-sm font-medium text-white transition hover:bg-indigo-700">
           Coba Sekarang
         </button>
 
@@ -90,7 +114,7 @@ const LandingPage = () => {
 
         {/* CTA */}
         <div className="mt-12 flex justify-center">
-          <button className="rounded-xl bg-indigo-600 px-8 py-3.5 text-base font-medium text-white shadow-sm transition hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
+          <button onClick={() => navigate("/login")} className="rounded-xl bg-indigo-600 px-8 py-3.5 text-base font-medium text-white shadow-sm transition hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
             Coba KuliahIn Sekarang
           </button>
         </div>
@@ -347,7 +371,7 @@ const LandingPage = () => {
     </section>
 
     {/* Feature KuliahIn */}
-    <section className="relative w-full mt-20 pb-10 px-6 overflow-hidden">
+    <section id="fitur" className="relative w-full mt-20 pb-10 px-6 overflow-hidden">
       
       {/* Background Aura (Calm & Intelligent) */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-indigo-500/10 rounded-full blur-[120px] pointer-events-none" />
@@ -490,7 +514,7 @@ const LandingPage = () => {
     </section>
 
     {/* How to works KuliahIn */}
-    <section className="py-24 bg-white relative overflow-hidden">
+    <section id="cara-kerja" className="py-24 bg-white relative overflow-hidden">
 
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         
@@ -580,7 +604,7 @@ const LandingPage = () => {
     </section>
 
     {/* Use Case Section */}
-    <section className="py-12 relative overflow-hidden">
+    <section id="use-case" className="py-12 relative overflow-hidden">
 
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         
@@ -714,7 +738,7 @@ const LandingPage = () => {
 
         {/* Big CTA Button */}
         <div className="flex flex-col items-center gap-4">
-           <button onClick={() => window.scrollTo({top: 0, behavior: 'smooth'})} className="group relative px-10 py-3.5 bg-white text-slate-900 rounded-full font-bold text-lg md:text-xl shadow-[0_0_40px_-10px_rgba(255,255,255,0.3)] hover:shadow-[0_0_60px_-15px_rgba(255,255,255,0.5)] hover:scale-105 transition-all duration-300">
+           <button onClick={() => navigate("/login")} className="group relative px-10 py-3.5 bg-white text-slate-900 rounded-full font-bold text-lg md:text-xl shadow-[0_0_40px_-10px_rgba(255,255,255,0.3)] hover:shadow-[0_0_60px_-15px_rgba(255,255,255,0.5)] hover:scale-105 transition-all duration-300">
               <span className="relative z-10 flex items-center gap-3">
                  Mulai Pakai Kuliahin
                  <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
