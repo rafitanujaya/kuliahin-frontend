@@ -64,6 +64,7 @@ const handleEnableMainNotification = async () => {
 };
 
     const [passwordError, setPasswordError] = useState({})
+    const [authProvider, setAuthProvider] = useState('cridential');
 
     const [loading, setLoading] = useState(true)
 
@@ -94,6 +95,7 @@ const handleEnableMainNotification = async () => {
             notifDeadline: res.data.notifDeadline,
             notifSchedule: res.data.notifSchedule,
             })
+            setAuthProvider(res.data.authProvider)
          } catch {
             toast.error("Gagal memuat preferensi")
          } finally {
@@ -246,7 +248,7 @@ const handleEnableMainNotification = async () => {
             </section>
 
             {/* Bagian Keamanan (Ganti Password) */}
-            <section className="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm">
+            {authProvider === 'cridential'? (<section className="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm">
                <h3 className="font-bold text-lg text-slate-800 mb-4 flex items-center gap-2">
                  <Shield size={20} className="text-emerald-600"/> Keamanan
                </h3>
@@ -338,7 +340,7 @@ const handleEnableMainNotification = async () => {
                </div>
                </div>
 
-            </section>
+            </section>) : (<> </>)}
 
             {/* Bagian Tampilan (Tema) */}
             <section className="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm">

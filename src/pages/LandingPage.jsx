@@ -798,9 +798,20 @@ const LandingPage = () => {
 
           {/* Bottom Bar: Copyright & Socials */}
           <div className="pt-8 border-t border-slate-100 flex flex-col md:flex-row justify-between items-center gap-4">
-             <div className="text-slate-400 text-sm">
-                &copy; {new Date().getFullYear()} Kuliahin App. All rights reserved.
-             </div>
+             <div className="text-slate-400 text-sm text-center md:text-left">
+               &copy; {new Date().getFullYear()} Kuliahin App. All rights reserved.
+               <div className="text-xs mt-1">
+                  Dibuat oleh{" "}
+                  <a
+                  href="https://www.linkedin.com/in/rafitanujaya/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-medium text-indigo-500 hover:underline"
+                  >
+                  Rafi Asshiddiqie Tanujaya
+                  </a>
+               </div>
+            </div>
 
              <div className="flex items-center gap-6">
                 <a href="#" className="p-2 text-slate-400 hover:text-indigo-500 hover:bg-indigo-50 rounded-full transition-all" aria-label="Twitter">
