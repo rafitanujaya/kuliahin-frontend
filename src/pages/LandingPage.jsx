@@ -17,6 +17,7 @@ CalendarRange,
 const LandingPage = () => {
     const [scrolled, setScrolled] = useState(false)
 
+
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 0)
